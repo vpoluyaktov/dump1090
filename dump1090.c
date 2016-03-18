@@ -67,7 +67,7 @@ void modesInitConfig(void) {
     memset(&Modes, 0, sizeof(Modes));
 
     // Now initialise things that should not be 0/NULL to their defaults
-    Modes.use_rtlsdr              = 1;
+    Modes.use_sdrplay             = 1;
     Modes.gain                    = MODES_MAX_GAIN;
     Modes.freq                    = MODES_DEFAULT_FREQ;
     Modes.ppm_error               = MODES_DEFAULT_PPM;
