@@ -607,7 +607,7 @@ void showHelp(void) {
 "-----------------------------------------------------------------------------\n"
 "--device-index <index>   Select RTL device (default: 0)\n"
 #ifdef SDRPLAY
-"--dev-sdrplay            use RSP device instead of RTL device (default: RTL).\n"
+"--dev-rtlsdr             use RTL device instead of RSP device (default: RSP).\n"
 #endif
 "--gain <db>              Set gain (default: max gain. Use -10 for auto-gain)\n"
 "--enable-agc             Enable the Automatic Gain Control (default: off)\n"
@@ -887,8 +887,8 @@ int main(int argc, char **argv) {
         if (!strcmp(argv[j],"--device-index") && more) {
             Modes.dev_index = verbose_device_search(argv[++j]);
 #ifdef SDRPLAY
-        } else if (!strcmp(argv[j],"--dev-sdrplay")) {
-            Modes.use_sdrplay = 1; Modes.use_rtlsdr = 0;
+        } else if (!strcmp(argv[j],"--dev-rtlsdr")) {
+            Modes.use_sdrplay = 0; Modes.use_rtlsdr = 1;
 #endif
         } else if (!strcmp(argv[j],"--gain") && more) {
             Modes.gain = (int) (atof(argv[++j])*10); // Gain is in tens of DBs
