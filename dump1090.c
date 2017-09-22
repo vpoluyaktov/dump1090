@@ -251,6 +251,8 @@ int modesInitSDRplay(void) {
 
     mir_sdr_ErrT err;
     float ver;
+    mir_sdr_RSPII_AntennaSelectT antSel;
+    int amPort = 0;
 
     /* Check API version */
     err = mir_sdr_ApiVersion(&ver);
@@ -264,6 +266,12 @@ int modesInitSDRplay(void) {
 
     /* Initialize SDRplay device */
     err = mir_sdr_Init (9, 8.000, 1090.048, mir_sdr_BW_1_536, mir_sdr_IF_2_048, &Modes.sdrplaySamplesPerPacket);
+    
+    /* Set Antenna */
+    antSel = mir_sdr_RSPII_ANTENNA_B;
+    
+    mir_sdr_AmPortSelect(amPort);
+    mir_sdr_RSPII_AntennaControl(antSel);
 
     if (err){
             fprintf(stderr, "Unable to initialize RSP\n");
